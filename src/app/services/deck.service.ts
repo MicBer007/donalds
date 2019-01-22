@@ -31,6 +31,8 @@ export class DeckService {
 
     this.hasDuplicates = deck.cards.some((card, index) => deck.cards.indexOf(card) != index);
 
+    deck.isShuffled = true;
+
     return deck;
 
   }

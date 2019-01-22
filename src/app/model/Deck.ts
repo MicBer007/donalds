@@ -6,6 +6,8 @@ export class Deck{
 
     maxAmountOfCards: number = 52;
 
+    isShuffled: boolean = false;
+
     constructor() {
 
     }
