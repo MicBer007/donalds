@@ -1,6 +1,10 @@
 <div *ngFor = "let card of deck.cards">
 
-    <div>{{card.rank}} of {{card.suite}}</div>
+    <div *ngIf = "card.inDeck=false">
+
+        <div>{{card.rank}} of {{card.suite}}</div>
+
+    </div>
 
 </div>
 
@@ -9,5 +13,13 @@
 <div>
 
     {{hasDuplicates}}
+
+</div>
+
+<br>
+
+<div>
+
+    {{player.cardsInHand[0].rank}} of {{player.cardsInHand[0].suite}}
 
 </div>

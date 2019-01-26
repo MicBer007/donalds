@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Deck } from '../model/Deck';
 import { Card } from '../model/Card';
+import { Player } from '../model/Player';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,26 @@ export class DeckService {
     deck.isShuffled = true;
 
     return deck;
+
+  }
+
+  dealCardToPlayer(player: Player, deck: Deck){
+
+    const card: Card = this.giveRandomCard(deck);
+
+    card.inDeck = false;
+
+    deck.cards[deck.cards.indexOf(card)].inDeck = false;
+
+    player.cardsInHand.push(card);
+
+  }
+
+  private giveRandomCard(deck: Deck): Card {
+
+    const card: Card = deck.cards[Math.floor(Math.random() * deck.maxAmountOfCards)];
+
+    return card;
 
   }
 

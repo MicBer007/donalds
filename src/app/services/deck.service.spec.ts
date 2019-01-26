@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DeckService } from './deck.service';
+import { Player } from '../model/Player';
 
 describe('DeckService', () => {
 
@@ -51,5 +52,19 @@ describe('DeckService', () => {
     expect(newDeck.isShuffled).toBe(true);
 
   });
+
+  it('should deal a random card to a player', () => {
+
+    const deckService = TestBed.get(DeckService);
+
+    const deck = deckService.createDeck();
+
+    const player = new Player();
+
+    deckService.dealCardToPlayer(player, deck);
+
+    expect(player.cardsInHand.length).toBe(1);
+
+  })
 
 });
