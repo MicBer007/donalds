@@ -1,18 +1,63 @@
 import { TestBed } from '@angular/core/testing';
-import { DeckService } from './deck.service';
-import { Deck } from '../model/Deck';
+import { GameService } from './game.service';
 
 describe('GameService', () => {
 
-  beforeEach(() => TestBed.configureTestingModule({}));
+  describe('When game is started', () => {
+    beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should have a shuffled deck', () => {
+    it('should have a shuffled deck', () => {
+      const gameService = TestBed.get(GameService);
 
-    // const deckService: DeckService;
+      gameService.start();
 
-    // const deck: Deck = deckService.createDeck();
+      expect(gameService.deck).toBeDefined();
+      expect(gameService.deck.isShuffled).toBeTruthy();
+    });
+
+    it('with 2 players, it should have 2 players', () => {
+      const gameService = TestBed.get(GameService);
+
+      gameService.start(2);
+
+      expect(gameService.players.length).toBe(2);
+    });
 
 
+    it('2 player game, first time deal, the round should be 1 ', () => {
+      const gameService = TestBed.get(GameService);
+
+      gameService.start(2);
+      gameService.deal();
+
+      expect(gameService.roundNumber).toBe(1);
+    });
+
+    it('2 player game, first time deal, the deck should have 50 cards', () => {
+      const gameService = TestBed.get(GameService);
+
+      gameService.start(2);
+      gameService.deal();
+
+      expect(gameService.deck.cards.length).toBe(50);
+    });
+
+     it('2 player game, first time deal, every player should have the top card from deck - only 1', () => {
+
+      const gameService = TestBed.get(GameService);
+      gameService.start(2);
+
+      const player1Card = gameService.deck.cards[0];
+      const player2Card = gameService.deck.cards[1];
+
+      gameService.deal();
+
+      expect(gameService.players[0].cardsInHand.length).toBe(1);
+      expect(gameService.players[1].cardsInHand.length).toBe(1);
+      expect(gameService.players[0].cardsInHand[0]).toEqual(player1Card);
+      expect(gameService.players[1].cardsInHand[0]).toEqual(player2Card);
+
+     });
 
   });
 

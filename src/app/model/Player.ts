@@ -1,15 +1,14 @@
-import { Card } from "./Card";
+import { Card } from './Card';
 
-export class Player{
+export class Player {
 
     cardsInHand: Card[] = [];
 
-    name:string;
+    name: string;
 
     amountOfTricks: number;
 
     constructor() {
 
     }
-
 }

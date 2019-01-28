@@ -53,17 +53,28 @@ describe('DeckService', () => {
 
   });
 
-  it('should deal a random card to a player', () => {
+  it('should have only 51 cards when a card is taken', () => {
 
     const deckService = TestBed.get(DeckService);
 
     const deck = deckService.createDeck();
 
-    const player = new Player();
+    deckService.takeCardFromDeck(deck);
 
-    deckService.dealCardToPlayer(player, deck);
+    expect(deck.cards.length).toBe(51);
+  });
 
-    expect(player.cardsInHand.length).toBe(1);
+  it('should take the first card in deck to be available to deal', () => {
+
+    const deckService = TestBed.get(DeckService);
+
+    const deck = deckService.createDeck();
+
+    const cardSupposeToDeal = deck.cards[0];
+
+    const cardToDeal = deckService.takeCardFromDeck(deck);
+
+    expect(cardToDeal.suite + cardToDeal.rank).toEqual(cardSupposeToDeal.suite + cardSupposeToDeal.rank);
 
   });
 

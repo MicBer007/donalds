@@ -1,0 +1,55 @@
+<button (click)='deal()'>DEAL</button>
+<div>
+  <table class='table' border=1>
+    <thead>
+        <tr>
+          <th>#</th>
+          <th>Deck</th>
+
+        </tr>
+    </thead>
+    <tbody *ngFor='let card of gameService.deck.cards'>
+        <tr>
+          <td>{{gameService.deck.cards.indexOf(card) + 1}}</td>
+          <td>{{card.rank}} of {{card.suite}}</td>
+
+        </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+    <table class='table' border=1>
+      <thead>
+          <tr>
+
+            <th>Player 1</th>
+
+          </tr>
+      </thead>
+      <tbody *ngFor='let card of gameService.players[0].cardsInHand'>
+          <tr>
+            <td>{{card.rank}} of {{card.suite}}</td>
+
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+      <table class='table' border=1>
+        <thead>
+            <tr>
+
+              <th>Player 2</th>
+
+            </tr>
+        </thead>
+        <tbody *ngFor='let card of gameService.players[1].cardsInHand'>
+            <tr>
+              <td>{{card.rank}} of {{card.suite}}</td>
+
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
