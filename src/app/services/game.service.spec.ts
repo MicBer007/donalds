@@ -3,17 +3,17 @@ import { DeckService } from './deck.service';
 import { Deck } from '../model/Deck';
 
 describe('GameService', () => {
-  
+
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should have a shuffled deck', () => {
 
-    //const deckService: DeckService;
+    // const deckService: DeckService;
 
-    //const deck: Deck = deckService.createDeck();
+    // const deck: Deck = deckService.createDeck();
 
 
 
   });
-  
+
 });

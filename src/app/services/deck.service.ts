@@ -8,15 +8,15 @@ import { Player } from '../model/Player';
 })
 export class DeckService {
 
-  ranks: string[] = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+  ranks: string[] = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
 
-  suites: string[] = ["♣", "♦", "♥", "♠"];
+  suites: string[] = ['♣', '♦', '♥', '♠'];
 
-  hasDuplicates: boolean = false;
+  hasDuplicates = false;
 
   constructor() { }
 
-  shuffle(deck:Deck): Deck {
+  shuffle(deck: Deck): Deck {
 
     let temp;
     let j;
@@ -27,10 +27,9 @@ export class DeckService {
       temp = deck.cards[i];
       deck.cards[i] = deck.cards[j];
       deck.cards[j] = temp;
-    
     }
 
-    this.hasDuplicates = deck.cards.some((card, index) => deck.cards.indexOf(card) != index);
+    this.hasDuplicates = deck.cards.some((card, index) => deck.cards.indexOf(card) !== index);
 
     deck.isShuffled = true;
 
@@ -38,16 +37,21 @@ export class DeckService {
 
   }
 
-  dealCardToPlayer(player: Player, deck: Deck){
-
+  dealCardToPlayer(player: Player, deck: Deck)  {
     const card: Card = this.giveRandomCard(deck);
-
+    console.log(`card to be dealt ${card.rank} ${card.suite}`);
+    console.log(`position: ${deck.cards.indexOf(card)}`);
+    deck = this.removeCardFromDeck(deck, card);
     card.inDeck = false;
 
-    deck.cards[deck.cards.indexOf(card)].inDeck = false;
 
     player.cardsInHand.push(card);
 
+  }
+
+  removeCardFromDeck(deck: Deck, card: Card): Deck {
+     deck.cards.splice(deck.cards.indexOf(card), 1);
+     return deck;
   }
 
   private giveRandomCard(deck: Deck): Card {
@@ -60,15 +64,15 @@ export class DeckService {
 
   createDeck(): Deck {
 
-    let deck:Deck = new Deck;
+    const deck: Deck = new Deck;
 
-    for(let i = 0; i < this.ranks.length; i++) {
+    for (let i = 0; i < this.ranks.length; i++) {
 
-      for(let j = 0; j < this.suites.length; j++) {
+      for (let j = 0; j < this.suites.length; j++) {
 
-        let place = i * this.suites.length + j;
+        const place = i * this.suites.length + j;
 
-        deck.cards[place] = { 
+        deck.cards[place] = {
           suite: this.suites[j],
           rank: this.ranks[i]} as Card;
       }
