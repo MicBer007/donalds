@@ -1,6 +1,6 @@
 <div *ngFor = "let card of deck.cards">
 
-    <div *ngIf = "card.inDeck=false">
+    <div *ngIf = "card.inDeck==true">
 
         <div>{{card.rank}} of {{card.suite}}</div>
 

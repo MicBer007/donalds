@@ -4,7 +4,7 @@ export class Card{
 
     rank:string;
 
-    inDeck:boolean = true;
+    inDeck:boolean;
 
     constructor(suite: string = null, rank: string = null) {
 
