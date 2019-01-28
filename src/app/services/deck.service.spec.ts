@@ -7,7 +7,7 @@ describe('DeckService', () => {
 
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it("should create a deck with 52 cards", () => {
+  it('should create a deck with 52 cards', () => {
 
     const deckService = TestBed.get(DeckService);
 
@@ -29,23 +29,23 @@ describe('DeckService', () => {
 
   });
 
-  it("should not have any duplicates", () => {
+  it('should not have any duplicates', () => {
 
     const deckService = TestBed.get(DeckService);
 
     const deck = deckService.createDeck();
 
-    const hasDuplicates = deck.cards.some((card, index) => deck.cards.indexOf(card) != index);
+    const hasDuplicates = deck.cards.some((card, index) => deck.cards.indexOf(card) !== index);  // THIS SHOULD NOT BE IN TESTS
 
     expect(hasDuplicates).toBe(false);
 
   });
 
-  it("should shuffle successfully", () => {
+  it('should shuffle successfully', () => {
 
     const deckService = TestBed.get(DeckService);
 
-    let newDeck = deckService.createDeck();
+    const newDeck = deckService.createDeck();
 
     deckService.shuffle(newDeck);
 
@@ -65,6 +65,6 @@ describe('DeckService', () => {
 
     expect(player.cardsInHand.length).toBe(1);
 
-  })
+  });
 
 });

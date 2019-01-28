@@ -25,7 +25,7 @@ export class AppComponent {
 
     this.deckService.dealCardToPlayer(this.player, this.deck);
 
-    this.hasDuplicates = this.deck.cards.some((card, index) => this.deck.cards.indexOf(card) != index);
+    this.hasDuplicates = this.deck.cards.some((card, index) => this.deck.cards.indexOf(card) !== index);
 
   }
 

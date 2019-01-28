@@ -8,15 +8,15 @@ import { Player } from '../model/Player';
 })
 export class DeckService {
 
-  ranks: string[] = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+  ranks: string[] = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
 
-  suites: string[] = ["♣", "♦", "♥", "♠"];
+  suites: string[] = ['♣', '♦', '♥', '♠'];
 
-  hasDuplicates: boolean = false;
+  hasDuplicates = false;
 
   constructor() { }
 
-  shuffle(deck:Deck): Deck {
+  shuffle(deck: Deck): Deck {
 
     let temp;
     let j;
@@ -64,13 +64,13 @@ export class DeckService {
 
   createDeck(): Deck {
 
-    let deck:Deck = new Deck;
+    const deck: Deck = new Deck;
 
-    for(let i = 0; i < this.ranks.length; i++) {
+    for (let i = 0; i < this.ranks.length; i++) {
 
-      for(let j = 0; j < this.suites.length; j++) {
+      for (let j = 0; j < this.suites.length; j++) {
 
-        let place = i * this.suites.length + j;
+        const place = i * this.suites.length + j;
 
         deck.cards[place] = {
           suite: this.suites[j],
