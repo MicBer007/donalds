@@ -27,10 +27,9 @@ export class DeckService {
       temp = deck.cards[i];
       deck.cards[i] = deck.cards[j];
       deck.cards[j] = temp;
-    
     }
 
-    this.hasDuplicates = deck.cards.some((card, index) => deck.cards.indexOf(card) != index);
+    this.hasDuplicates = deck.cards.some((card, index) => deck.cards.indexOf(card) !== index);
 
     deck.isShuffled = true;
 
@@ -38,16 +37,21 @@ export class DeckService {
 
   }
 
-  dealCardToPlayer(player: Player, deck: Deck){
-
+  dealCardToPlayer(player: Player, deck: Deck)  {
     const card: Card = this.giveRandomCard(deck);
-
+    console.log(`card to be dealt ${card.rank} ${card.suite}`);
+    console.log(`position: ${deck.cards.indexOf(card)}`);
+    deck = this.removeCardFromDeck(deck, card);
     card.inDeck = false;
 
-    deck.cards[deck.cards.indexOf(card)].inDeck = false;
 
     player.cardsInHand.push(card);
 
+  }
+
+  removeCardFromDeck(deck: Deck, card: Card): Deck {
+     deck.cards.splice(deck.cards.indexOf(card), 1);
+     return deck;
   }
 
   private giveRandomCard(deck: Deck): Card {
@@ -68,7 +72,7 @@ export class DeckService {
 
         let place = i * this.suites.length + j;
 
-        deck.cards[place] = { 
+        deck.cards[place] = {
           suite: this.suites[j],
           rank: this.ranks[i]} as Card;
       }

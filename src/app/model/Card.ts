@@ -2,9 +2,9 @@ export class Card{
 
     suite: string;
 
-    rank:string;
+    rank: string;
 
-    inDeck:boolean = true;
+    inDeck: boolean = true;
 
     constructor(suite: string = null, rank: string = null) {
 
