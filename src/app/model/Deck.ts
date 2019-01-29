@@ -1,10 +1,10 @@
-import { Card } from "./Card";
+import { Card } from './Card';
 
-export class Deck{
+export class Deck {
 
     cards: Card[] = [];
 
-    maxAmountOfCards: number = 52;
+    maxAmountOfCards = 52;
 
     isShuffled = false;
 
