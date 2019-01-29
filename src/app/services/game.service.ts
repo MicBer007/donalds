@@ -19,6 +19,20 @@ export class GameService {
   
   constructor(private deckService: DeckService) { }
 
+  prepareNewRound(): void{
+
+    this.deck = this.deckService.createDeck();
+
+    this.deckService.shuffle(this.deck);
+
+    this.players.forEach((player) => {
+
+      player.cardsInHand = [];
+
+    });
+
+  }
+
     start(numberOfPlayers: number = 0): void {
       console.log('Game Started');
       this.players = [];
@@ -29,7 +43,7 @@ export class GameService {
       }
     }
 
-    deal(): void {
+    private deal(): void {
       this.roundNumber++;
       console.log(`Deal round ${this.roundNumber}`);
       this.players.forEach(player => {
@@ -39,7 +53,7 @@ export class GameService {
 
     }
 
-    getTrumpCard(): void {
+    private getTrumpCard(): void {
 
       this.trumpCard = this.deck.cards.shift();
 

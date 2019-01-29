@@ -75,6 +75,26 @@ describe('GameService', () => {
 
     });
 
+    it('when start new round button has been pressed is the deck new', () => {
+
+      const gameService = TestBed.get(GameService);
+
+      gameService.start(2);
+
+      gameService.startNewRound();
+
+      gameService.prepareNewRound();
+
+      expect(gameService.deck.cards.length).toBe(52);
+
+      expect(gameService.deck.isShuffled).toBe(true);
+
+      expect(gameService.players[0].cardsInHand.length).toBe(0);
+
+      expect(gameService.players[1].cardsInHand.length).toBe(0);
+
+    });
+
   });
 
 });
