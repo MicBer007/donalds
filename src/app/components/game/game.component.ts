@@ -14,6 +14,14 @@ export class GameComponent implements OnInit {
 
     this.gameService.start(2);
 
+    this.gameService.startNewRound();
+
+  }
+
+  newRound(): void {
+
+    this.gameService.startNewRound();
+
   }
 
   deal() {
