@@ -42,7 +42,7 @@ describe('GameService', () => {
       expect(gameService.deck.cards.length).toBe(50);
     });
 
-     it('2 player game, first time deal, every player should have the top card from deck - only 1', () => {
+    it('2 player game, first time deal, every player should have the top card from deck - only 1', () => {
 
       const gameService = TestBed.get(GameService);
       gameService.start(2);
@@ -57,7 +57,23 @@ describe('GameService', () => {
       expect(gameService.players[0].cardsInHand[0]).toEqual(player1Card);
       expect(gameService.players[1].cardsInHand[0]).toEqual(player2Card);
 
-     });
+    });
+
+    it('2 player game, after first time deal, top card should be trump card', () => {
+
+      const gameService = TestBed.get(GameService);
+
+      gameService.start(2);
+
+      const trumpCard = gameService.deck.cards[2];
+
+      gameService.deal();
+
+      gameService.getTrumpCard();
+
+      expect(gameService.trumpCard).toBe(trumpCard);
+
+    });
 
   });
 
