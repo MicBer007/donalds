@@ -1,68 +1,91 @@
-<br>
 
-<div>
+<div class="row" style="margin-left: 25px">
+    <h2>Round - {{gameService.roundNumber}}</h2>
 
-  trump card =>>>>> {{gameService.trumpCard.rank}} of {{gameService.trumpCard.suite}}
+
+
 
 </div>
-
-<br>
-
-<button (click)='newRound()'>START NEW ROUND</button>
-
-<button (click)='deal()'>DEAL</button>
-
-<div>
-  <table class='table' border=1>
-    <thead>
-        <tr>
-          <th>#</th>
-          <th>Deck</th>
-
-        </tr>
-    </thead>
-    <tbody *ngFor='let card of gameService.deck.cards'>
-        <tr>
-          <td>{{gameService.deck.cards.indexOf(card) + 1}}</td>
-          <td>{{card.rank}} of {{card.suite}}</td>
-
-        </tr>
-    </tbody>
-  </table>
+<div class="row" style="margin-left: 25px; margin-bottom: 50px">
+    <button class="btn btn-primary" (click)='newRound()'>START NEW ROUND</button>
 </div>
-<div>
-    <table class='table' border=1>
-      <thead>
-          <tr>
+<div class="row" style="margin-left: 10px">
 
-            <th>Player 1</th>
+      <div class="col-md-2">
+          <table class='table' >
+              <thead class="thead-dark">
+                  <tr>
+                    <th>#</th>
+                    <th>Deck</th>
 
-          </tr>
-      </thead>
-      <tbody *ngFor='let card of gameService.players[0].cardsInHand'>
-          <tr>
-            <td>{{card.rank}} of {{card.suite}}</td>
+                  </tr>
+              </thead>
+              <tbody *ngFor='let card of gameService.deck.cards'>
+                  <tr>
+                    <td>{{gameService.deck.cards.indexOf(card) + 1}}</td>
+                    <td>{{card.rank}} of {{card.suite}}</td>
 
-          </tr>
-      </tbody>
-    </table>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-1">
+              <table class='table' >
+                  <thead class="thead-dark">
+                      <tr>
+                        <th>Trump</th>
+
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                        <td style="text-align: center">{{gameService.trumpCard.suite}}
+                          </td>
+
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+          <div class="col-md-1">
+              <table class='table'>
+                <thead class="thead-dark" >
+                    <tr>
+
+                      <th>Player 1</th>
+
+                    </tr>
+                </thead>
+                <tbody *ngFor='let card of gameService.players[0].cardsInHand'>
+                    <tr>
+                      <td>{{card.rank}} of {{card.suite}}</td>
+
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+      <div class="col-md-1">
+          <table class='table'>
+            <thead class="thead-dark">
+                <tr>
+
+                  <th>Player 2</th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor='let card of gameService.players[1].cardsInHand'>
+                <tr>
+                  <td>{{card.rank}} of {{card.suite}}</td>
+
+                </tr>
+            </tbody>
+          </table>
+        </div>
   </div>
 
-  <div>
-      <table class='table' border=1>
-        <thead>
-            <tr>
 
-              <th>Player 2</th>
 
-            </tr>
-        </thead>
-        <tbody *ngFor='let card of gameService.players[1].cardsInHand'>
-            <tr>
-              <td>{{card.rank}} of {{card.suite}}</td>
 
-            </tr>
-        </tbody>
-      </table>
-    </div>
+
 
