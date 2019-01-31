@@ -11,13 +11,17 @@ export class GameService {
 
   deck: Deck;
 
+  amountOfCardsDealt: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2, 1]
+
   players: Player[];
 
   roundNumber = 0;
 
   trumpCard: Card;
   
-  constructor(private deckService: DeckService) { }
+  constructor(private deckService: DeckService) { 
+
+  }
 
   prepareNewRound(): void{
 
@@ -33,38 +37,51 @@ export class GameService {
 
   }
 
-    start(numberOfPlayers: number = 0): void {
-      console.log('Game Started');
-      this.players = [];
-      const newDeck = this.deckService.createDeck();
-      this.deck = this.deckService.shuffle(newDeck);
-      for (let index = 0; index < numberOfPlayers; index++) {
-        this.players.push(new Player());
-      }
+  start(numberOfPlayers: number = 0): void {
+    console.log('Game Started');
+    this.players = [];
+    const newDeck = this.deckService.createDeck();
+    this.deck = this.deckService.shuffle(newDeck);
+
+    for (let index = 0; index < numberOfPlayers; index++) {
+      this.players.push(new Player());
     }
 
-    private deal(): void {
-      this.roundNumber++;
-      console.log(`Deal round ${this.roundNumber}`);
-      this.players.forEach(player => {
-        const cardToDeal = this.deckService.takeCardFromDeck(this.deck);
-        player.cardsInHand.push(cardToDeal);
-      });
+    this.startNewRound();
 
-    }
+  }
 
-    private getTrumpCard(): void {
+  private deal(): void {
 
-      this.trumpCard = this.deck.cards.shift();
+    this.players.forEach(player => {
+      const cardToDeal = this.deckService.takeCardFromDeck(this.deck);
+      player.cardsInHand.push(cardToDeal);
+    });
 
-    }
+  }
 
-    startNewRound(): void {
+  private getTrumpCard(): void {
+
+    this.trumpCard = this.deck.cards.shift();
+
+  }
+
+  startNewRound(): void {
+
+    this.roundNumber++;
+
+    console.log(`Round ${this.roundNumber}`);
+
+    this.prepareNewRound();
+
+    for(let i = 0; i < this.amountOfCardsDealt[this.roundNumber-1]; i++) {
 
       this.deal();
 
-      this.getTrumpCard();
-
     }
+
+    this.getTrumpCard();
+
+  }
 
 }

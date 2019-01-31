@@ -4,6 +4,7 @@ import { GameService } from './game.service';
 describe('GameService', () => {
 
   describe('When game is started', () => {
+
     beforeEach(() => TestBed.configureTestingModule({}));
 
     it('should have a shuffled deck', () => {
@@ -24,11 +25,11 @@ describe('GameService', () => {
     });
 
 
-    it('2 player game, first time deal, the round should be 1 ', () => {
+    it('2 player game, first time startNewRound(), the round should be 1 ', () => {
       const gameService = TestBed.get(GameService);
 
       gameService.start(2);
-      gameService.deal();
+      gameService.startNewRound();
 
       expect(gameService.roundNumber).toBe(1);
     });
@@ -75,7 +76,7 @@ describe('GameService', () => {
 
     });
 
-    it('when start new round button has been pressed is the deck new', () => {
+    it('in two player game, when start new round button has been pressed, is the deck new', () => {
 
       const gameService = TestBed.get(GameService);
 
@@ -92,6 +93,22 @@ describe('GameService', () => {
       expect(gameService.players[0].cardsInHand.length).toBe(0);
 
       expect(gameService.players[1].cardsInHand.length).toBe(0);
+
+    });
+
+    it('should deal 2 cards on the second round', () => {
+
+      const gameService = TestBed.get(GameService);
+
+      gameService.start(2);
+
+      gameService.startNewRound();
+
+      gameService.startNewRound();
+
+      expect(gameService.players[0].cardsInHand.length).toBe(2);
+
+      expect(gameService.players[1].cardsInHand.length).toBe(2);
 
     });
 
