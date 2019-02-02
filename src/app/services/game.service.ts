@@ -37,7 +37,7 @@ export class GameService {
 
   }
 
-  start(numberOfPlayers: number = 0): void {
+  start(numberOfPlayers: number = 0, shouldStartNewRound = true): void {
     console.log('Game Started');
     this.players = [];
     const newDeck = this.deckService.createDeck();
@@ -47,7 +47,12 @@ export class GameService {
       this.players.push(new Player());
     }
 
-    this.startNewRound();
+    if(shouldStartNewRound == true) {
+
+      this.startNewRound();
+
+    }
+
 
   }
 

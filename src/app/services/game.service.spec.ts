@@ -28,7 +28,7 @@ describe('GameService', () => {
     it('2 player game, first time startNewRound(), the round should be 1 ', () => {
       const gameService = TestBed.get(GameService);
 
-      gameService.start(2);
+      gameService.start(2, false);
       gameService.startNewRound();
 
       expect(gameService.roundNumber).toBe(1);
@@ -37,7 +37,7 @@ describe('GameService', () => {
     it('2 player game, first time deal, the deck should have 50 cards', () => {
       const gameService = TestBed.get(GameService);
 
-      gameService.start(2);
+      gameService.start(2,false);
       gameService.deal();
 
       expect(gameService.deck.cards.length).toBe(50);
@@ -46,7 +46,7 @@ describe('GameService', () => {
     it('2 player game, first time deal, every player should have the top card from deck - only 1', () => {
 
       const gameService = TestBed.get(GameService);
-      gameService.start(2);
+      gameService.start(2,false);
 
       const player1Card = gameService.deck.cards[0];
       const player2Card = gameService.deck.cards[1];
@@ -69,7 +69,6 @@ describe('GameService', () => {
       const trumpCard = gameService.deck.cards[2];
 
       gameService.deal();
-
       gameService.getTrumpCard();
 
       expect(gameService.trumpCard).toBe(trumpCard);
@@ -81,17 +80,12 @@ describe('GameService', () => {
       const gameService = TestBed.get(GameService);
 
       gameService.start(2);
-
       gameService.startNewRound();
-
       gameService.prepareNewRound();
 
       expect(gameService.deck.cards.length).toBe(52);
-
       expect(gameService.deck.isShuffled).toBe(true);
-
       expect(gameService.players[0].cardsInHand.length).toBe(0);
-
       expect(gameService.players[1].cardsInHand.length).toBe(0);
 
     });
@@ -100,14 +94,11 @@ describe('GameService', () => {
 
       const gameService = TestBed.get(GameService);
 
-      gameService.start(2);
-
+      gameService.start(2, false);
       gameService.startNewRound();
-
       gameService.startNewRound();
 
       expect(gameService.players[0].cardsInHand.length).toBe(2);
-
       expect(gameService.players[1].cardsInHand.length).toBe(2);
 
     });

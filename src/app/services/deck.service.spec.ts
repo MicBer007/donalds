@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { DeckService } from './deck.service';
-import { Player } from '../model/Player';
 
 describe('DeckService', () => {
 
@@ -10,11 +9,9 @@ describe('DeckService', () => {
   it('should create a deck with 52 cards', () => {
 
     const deckService = TestBed.get(DeckService);
-
     const deck = deckService.createDeck();
 
     expect(deck).toBeDefined();
-
     expect(deck.cards.length).toBe(52);
 
   });
@@ -22,7 +19,6 @@ describe('DeckService', () => {
   it('a deck should start unshuffled', () => {
 
     const deckService = TestBed.get(DeckService);
-
     const deck = deckService.createDeck();
 
     expect(deck.isShuffled).toBe(false);
@@ -32,9 +28,7 @@ describe('DeckService', () => {
   it('should not have any duplicates', () => {
 
     const deckService = TestBed.get(DeckService);
-
     const deck = deckService.createDeck();
-
     const hasDuplicates = deck.cards.some((card, index) => deck.cards.indexOf(card) !== index);  // THIS SHOULD NOT BE IN TESTS
 
     expect(hasDuplicates).toBe(false);
@@ -44,7 +38,6 @@ describe('DeckService', () => {
   it('should shuffle successfully', () => {
 
     const deckService = TestBed.get(DeckService);
-
     const newDeck = deckService.createDeck();
 
     deckService.shuffle(newDeck);
@@ -56,7 +49,6 @@ describe('DeckService', () => {
   it('should have only 51 cards when a card is taken', () => {
 
     const deckService = TestBed.get(DeckService);
-
     const deck = deckService.createDeck();
 
     deckService.takeCardFromDeck(deck);
@@ -67,11 +59,8 @@ describe('DeckService', () => {
   it('should take the first card in deck to be available to deal', () => {
 
     const deckService = TestBed.get(DeckService);
-
     const deck = deckService.createDeck();
-
     const cardSupposeToDeal = deck.cards[0];
-
     const cardToDeal = deckService.takeCardFromDeck(deck);
 
     expect(cardToDeal.suite + cardToDeal.rank).toEqual(cardSupposeToDeal.suite + cardSupposeToDeal.rank);
